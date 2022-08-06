@@ -9,6 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(json());
+app.use(express.urlencoded({extended: true}));//lidar com requisições no padrão url encoded
 app.use(router);
 app.use(handleError);
 
