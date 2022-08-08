@@ -5,6 +5,6 @@ import { validateDataSignUp, verifyConflictEmail } from "../middlewares/userMidd
 
 const userRouter = Router();
 
-userRouter.post("/signup", validateDataSignUp, verifyConflictEmail, upload.single('file'), userSignUp);
+userRouter.post("/signup", validateDataSignUp, verifyConflictEmail, userSignUp);
 
 export default userRouter;
