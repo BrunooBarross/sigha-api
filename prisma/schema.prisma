@@ -17,6 +17,20 @@ model Users {
   password    String     
   awsFileKey  String 
   imageUrl    String  
+  Documents   Documents[]
 
   @@map("users")
+}
+
+model Documents {
+  id                  Int                 @id @default(autoincrement())
+  title               String              
+  type                String
+  issueDate           DateTime
+  hours               Int
+  userId              Int
+  documentUrl         String
+  user                Users               @relation(fields: [userId], references: [id])
+  createdAt           DateTime            @default(now())
+  @@map("documents")
 }

@@ -45,7 +45,8 @@ const upload = multer({
             'image/pjpeg',
             'image/jpg',
             'image/png',
-            'image/gif'
+            'image/gif',
+            'application/pdf'
         ];
         if (allowedMimes.includes(file.mimetype)) {
             cb(null, true);
