@@ -10,3 +10,14 @@ export async function insert(data: DocumentInsertData){
         }
     });
 };
+
+export async function selectAllDocuments(userId: number){
+    return await prisma.documents.findMany({
+        where: {
+            userId
+        },
+        orderBy:{
+            issueDate: 'desc'  
+        }
+    });
+};

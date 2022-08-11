@@ -9,3 +9,9 @@ export async function createDocument(req: Request, res: Response){
     await documentService.createDocument(data);
     return res.sendStatus(201)
 }
+
+export async function getDocuments(req: Request, res: Response){
+    const userId = res.locals.userId;
+    const result = await documentService.getAllDocuments(userId);
+    res.status(200).send(result);
+}
