@@ -31,4 +31,21 @@ export async function selectByTitle(title: string){
             }
         }
     });
+};
+
+export async function selectByIdAndUserId(id: number, userId: number){
+    return await prisma.documents.findFirst({
+        where:{
+            id,
+            userId
+        }
+    });
 }
+
+export async function deleteDocument(id: number) {
+    await prisma.documents.delete({
+        where: {
+            id
+        }
+    });
+};

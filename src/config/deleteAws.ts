@@ -3,12 +3,22 @@ import dotenv from "dotenv"
 import { Request } from "express";
 dotenv.config()
 
-export default function deleteFileAws(req: Request) {
+export function deleteFileAws(req: Request) {
     const { key: awsFileKey } = req.file as Express.MulterS3.File;
 
     const s3 = new aws.S3({ region: process.env.AWS_DEFAULT_REGION })
 
     s3.deleteObject({ Bucket: 'sigha', Key: awsFileKey }, (err, data) => {
+        if (err) {
+            console.error(err);
+        };
+    });
+}
+
+export function deleteFileAwsByKey(key: string) {
+    const s3 = new aws.S3({ region: process.env.AWS_DEFAULT_REGION })
+
+    s3.deleteObject({ Bucket: 'sigha', Key: key}, (err, data) => {
         if (err) {
             console.error(err);
         };

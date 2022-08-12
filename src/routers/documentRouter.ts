@@ -8,5 +8,6 @@ const documentRouter = Router();
 documentRouter.post('/documents', validateToken, validateDocumenData, createDocument);
 documentRouter.get('/documents', validateToken, getDocuments);
 documentRouter.get('/documents/search', validateToken, getDocumentByParams);
+documentRouter.delete('/documents', validateToken);
 
 export default documentRouter;

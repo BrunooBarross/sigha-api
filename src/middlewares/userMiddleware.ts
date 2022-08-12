@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { userSchemaSignIn, userSchemaSignUp } from "../schemas/userSchema.js";
 import * as userRepository from "../repositories/userRepository.js"
-import deleteFileAws from "../config/deleteAws.js";
+import * as deleteAws from "../config/deleteAws.js";
 
 export function validateDataSignUp(req: Request, res: Response, next: NextFunction) {
     const { error } = userSchemaSignUp.validate(req.body);
@@ -18,7 +18,7 @@ export async function verifyConflictEmail(req: Request, res: Response, next: Nex
     const existUser = await userRepository.findByEmail(email);
 
     if (existUser) {
-        deleteFileAws(req);
+        deleteAws.deleteFileAws(req);
         throw { type: "conflict", message: `email ${email} is already in use` }
     }
 
@@ -29,7 +29,7 @@ export function validateDataSignIn(req: Request, res: Response, next: NextFuncti
     const { error } = userSchemaSignIn.validate(req.body);
 
     if (error) {
-        deleteFileAws(req);
+        deleteAws.deleteFileAws(req);
         throw { type: "unprocessable_entity", message: error.details[0].message }
     }
 
