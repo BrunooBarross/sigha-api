@@ -15,3 +15,9 @@ export async function getDocuments(req: Request, res: Response){
     const result = await documentService.getAllDocuments(userId);
     res.status(200).send(result);
 }
+
+export async function getDocumentByParams(req: Request, res: Response){
+    const {title} = req.query;
+    const result = await documentService.getDocumentByQueryParams(title.toString());
+    return res.status(200).send(result);
+}

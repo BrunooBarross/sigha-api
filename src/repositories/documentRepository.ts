@@ -21,3 +21,14 @@ export async function selectAllDocuments(userId: number){
         }
     });
 };
+
+export async function selectByTitle(title: string){
+    return await prisma.documents.findMany({
+        where: {
+            title: {
+                contains: title,
+                mode: 'insensitive'
+            }
+        }
+    });
+}

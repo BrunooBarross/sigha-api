@@ -10,3 +10,7 @@ export async function getAllDocuments(userId: number){
     const result = await documentRepository.selectAllDocuments(userId);
     return result;
 }
+
+export async function getDocumentByQueryParams(title: string){
+    return await documentRepository.selectByTitle(title);
+}
