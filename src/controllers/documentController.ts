@@ -21,3 +21,10 @@ export async function getDocumentByParams(req: Request, res: Response){
     const result = await documentService.getDocumentByQueryParams(title.toString());
     return res.status(200).send(result);
 }
+
+export async function deleteDocument(req: Request, res: Response){
+    const id:number = +req.headers.id;
+    const userId = res.locals.userId;
+    await documentService.deleteDocument(id, userId);
+    return res.sendStatus(200);
+}
