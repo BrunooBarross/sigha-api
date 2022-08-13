@@ -49,3 +49,27 @@ export async function deleteDocument(id: number) {
         }
     });
 };
+
+export async function update(id: number, data: DocumentInsertData){
+    if(data.awsFileKey){
+        return await prisma.documents.update({
+            where:{
+                id
+            },
+            data:{
+                ...data
+            }
+        });
+    }
+    await prisma.documents.update({
+        where:{
+            id
+        },
+        data:{
+            title: data.title,
+            type: data.type,
+            issueDate: data.issueDate,
+            hours: data.hours
+        }
+    });    
+};

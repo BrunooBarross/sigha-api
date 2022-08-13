@@ -28,3 +28,21 @@ export async function deleteDocument(req: Request, res: Response){
     await documentService.deleteDocument(id, userId);
     return res.sendStatus(200);
 }
+
+export async function updateDocument(req: Request, res: Response){
+    const id:number = +req.headers.id;
+    const userId = res.locals.userId;
+
+    if(req.file){
+        const { location: documentUrl, size, originalname: name, key: awsFileKey } = req.file as Express.MulterS3.File;
+        const data = {...req.body, userId, documentUrl, awsFileKey}
+        data.hours = parseInt(data.hours);
+        await documentService.updateDocument(id, userId, data);
+        return res.sendStatus(200);
+    }
+    
+    const data = {...req.body, userId, documentUrl: false, awsFileKey: false}
+    data.hours = parseInt(data.hours);
+    await documentService.updateDocument(id, userId, data);
+    return res.sendStatus(200);
+}
