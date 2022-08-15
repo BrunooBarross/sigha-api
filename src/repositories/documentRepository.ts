@@ -52,7 +52,7 @@ export async function deleteDocument(id: number) {
 
 export async function update(id: number, data: DocumentInsertData){
     if(data.awsFileKey === "false"){
-        await prisma.documents.update({
+        return await prisma.documents.update({
             where:{
                 id
             },
