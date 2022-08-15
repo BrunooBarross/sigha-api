@@ -37,7 +37,9 @@ export async function updateDocument(id: number, userId: number, data: DocumentI
     if (!document) {
         throw { type: "unauthorized", message: 'document does not exist or does not belong to you' }
     }
-    deleteAws.deleteFileAwsByKey(document.awsFileKey);
+    if(data.awsFileKey){
+        deleteAws.deleteFileAwsByKey(document.awsFileKey);
+    }
     data.issueDate = new Date(data.issueDate);
     await documentRepository.update(id, data);
 };
