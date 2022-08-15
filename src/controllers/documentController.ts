@@ -34,6 +34,7 @@ export async function updateDocument(req: Request, res: Response){
     const userId = res.locals.userId;
 
     if(req.file){
+        console.log('entrei aqui')
         const { location: documentUrl, size, originalname: name, key: awsFileKey } = req.file as Express.MulterS3.File;
         const data = {...req.body, userId, documentUrl, awsFileKey}
         data.hours = parseInt(data.hours);
@@ -41,7 +42,7 @@ export async function updateDocument(req: Request, res: Response){
         return res.sendStatus(200);
     }
     
-    const data = {...req.body, userId, documentUrl: false, awsFileKey: false}
+    const data = {...req.body, userId, documentUrl: "false", awsFileKey: "false"}
     data.hours = parseInt(data.hours);
     await documentService.updateDocument(id, userId, data);
     return res.sendStatus(200);
