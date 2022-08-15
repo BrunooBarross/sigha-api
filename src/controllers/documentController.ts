@@ -34,7 +34,6 @@ export async function updateDocument(req: Request, res: Response){
     const userId = res.locals.userId;
 
     if(req.file){
-        console.log('entrei aqui')
         const { location: documentUrl, size, originalname: name, key: awsFileKey } = req.file as Express.MulterS3.File;
         const data = {...req.body, userId, documentUrl, awsFileKey}
         data.hours = parseInt(data.hours);
