@@ -6,6 +6,7 @@
 
 ## 💻 Tecnologias Utilizadas
 
+- PostgreSQL
 - TypeScript
 - Express
 - jwt
