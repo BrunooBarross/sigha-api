@@ -11,6 +11,7 @@
 - jwt
 - bcrypt
 - Joi
+- AWS S3
 
 ---
 
